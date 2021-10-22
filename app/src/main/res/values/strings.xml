@@ -2,8 +2,8 @@
     <string name="app_name">Calculator</string>
     <string name="key_1">1</string>
     <string name="key_0">0</string>
-    <string name="key_01">,</string>
-    <string name="key_02">=</string>
+    <string name="key_dot"></string>
+    <string name="key_02"></string>
     <string name="key_9">9</string>
     <string name="key_2">2</string>
     <string name="key_3">3</string>
@@ -12,11 +12,11 @@
     <string name="key_6">6</string>
     <string name="key_7">7</string>
     <string name="key_8">8</string>
-    <string name="key_3a">+</string>
-    <string name="key_6a">-</string>
-    <string name="key_9a">×</string>
-    <string name="key_ac">AC</string>
-    <string name="key_pm">±</string>
-    <string name="key_percent">%</string>
-    <string name="key_del">÷</string>
+    <string name="key_add"></string>
+    <string name="key_sub"></string>
+    <string name="key_mult"></string>
+    <string name="key_ac"></string>
+    <string name="key_pm"></string>
+    <string name="key_percent"></string>
+    <string name="key_div"></string>
 </resources>
