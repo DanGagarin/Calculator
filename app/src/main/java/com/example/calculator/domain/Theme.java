@@ -2,16 +2,20 @@ package com.example.calculator.domain;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
 
-public class Theme {
-    @StringRes
-    private int title;
-    @DrawableRes
-    private int img;
+import com.example.calculator.R;
 
-    public Theme(int title, int img){
+public enum Theme {
+
+    THEME_ONE(R.string.theme_one, R.drawable.ic_baseline_wb_sunny_24, R.style.Theme_Calculator);
+
+    private String key;
+
+    private Theme(int theme_one, int title, int img) {
         this.title = title;
         this.img = img;
+        this.theme = theme;
     }
 
     public int getTitle() {
@@ -23,6 +27,17 @@ public class Theme {
     }
 
     public int getTheme() {
-        return 0;
+        return theme;
+    }
+
+    @StringRes
+    private int title;
+    @DrawableRes
+    private int img;
+    @StyleRes
+    private int theme;
+
+    public String getKey() {
+        return key;
     }
 }

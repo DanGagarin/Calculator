@@ -7,7 +7,7 @@ import com.example.calculator.domain.Theme;
 
 public class ThemeStorage {
 
-    private static  final String ARG_THEME = "ARG_THEME";
+    private static final String ARG_THEME = "ARG_THEME";
 
     private final SharedPreferences sharedPreferences;
 
@@ -27,7 +27,7 @@ public class ThemeStorage {
         return Theme.THEME_ONE;
     }
 
-    public void setTheme (Theme theme) {
+    public void setTheme(Theme theme) {
         sharedPreferences.edit().putString(ARG_THEME, theme.getKey())
                 .apply();
     }

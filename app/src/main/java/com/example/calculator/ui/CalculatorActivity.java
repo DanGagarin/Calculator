@@ -39,7 +39,7 @@ public class CalculatorActivity<container> extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
 
         storage = new ThemeStorage(this);
-        
+
         setTheme(storage.getTheme().getTheme());
 
         setContentView(R.layout.activity_main);
@@ -124,7 +124,7 @@ public class CalculatorActivity<container> extends AppCompatActivity implements 
             return;
         }
 
-        for (Theme theme: themes){
+        for (Theme theme : themes) {
             View itemView = getLayoutInflater().inflate(R.layout.item_theme, container, false);
 
             ImageView img = itemView.findViewById(R.id.img);
@@ -146,4 +146,5 @@ public class CalculatorActivity<container> extends AppCompatActivity implements 
 
             container.addView(itemView);
         }
-    }}
+    }
+}
