@@ -2,6 +2,9 @@ package com.example.calculator.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -10,19 +13,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.calculator.R;
 import com.example.calculator.domain.CalculatorImp;
 import com.example.calculator.domain.Operation;
+import com.example.calculator.domain.Theme;
+import com.example.calculator.storage.ThemeStorage;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
+public class CalculatorActivity<container> extends AppCompatActivity implements CalculatorView {
 
     private TextView txtResult;
 
-    public CalculatorPresenter presenter;
+    private LinearLayout container;
+
+    private CalculatorPresenter presenter;
+
+    private ThemeStorage storage;
+
+    public CalculatorActivity(LinearLayout container) {
+        this.container = container;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        storage = new ThemeStorage(this);
+
+        setTheme(storage.getTheme().getTheme());
 
         setContentView(R.layout.activity_main);
 
@@ -65,7 +83,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_add, Operation.ADD);
         operators.put(R.id.key_sub, Operation.SUB);
         operators.put(R.id.key_div, Operation.DIV);
-        operators.put(R.id.key_mult, Operation.MULT);
+        operators.put(R.id.key_mul, Operation.MULT);
 
         View.OnClickListener operationClickListener = new View.OnClickListener() {
             @Override
@@ -78,20 +96,55 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         findViewById(R.id.key_add).setOnClickListener(operationClickListener);
         findViewById(R.id.key_sub).setOnClickListener(operationClickListener);
         findViewById(R.id.key_div).setOnClickListener(operationClickListener);
-        findViewById(R.id.key_mult).setOnClickListener(operationClickListener);
+        findViewById(R.id.key_mul).setOnClickListener(operationClickListener);
 
         findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.onDotPressed();
-
             }
         });
+
+
+        container = findViewById(R.id.theme_container);
+
+        presenter.requestThemes();
+
     }
 
     @Override
     public void showResult(String result) {
         txtResult.setText(result);
 
+    }
+
+    @Override
+    public void showThemes(List<Theme> themes) {
+        if (container == null) {
+            return;
+        }
+
+        for (Theme theme : themes) {
+            View itemView = getLayoutInflater().inflate(R.layout.item_theme, container, false);
+
+            ImageView img = itemView.findViewById(R.id.img);
+            TextView txt = itemView.findViewById(R.id.txt);
+
+            img.setImageResource(theme.getImg());
+
+            String textValue = getString(theme.getTitle());
+            txt.setText(theme.getTitle());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    storage.setTheme(theme);
+
+                    recreate();
+                }
+            });
+
+            container.addView(itemView);
+        }
     }
 }
