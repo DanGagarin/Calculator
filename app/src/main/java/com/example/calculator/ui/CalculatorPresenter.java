@@ -1,7 +1,12 @@
 package com.example.calculator.ui;
 
+import com.example.calculator.R;
 import com.example.calculator.domain.Calculator;
 import com.example.calculator.domain.Operation;
+import com.example.calculator.domain.Theme;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalculatorPresenter {
 
@@ -68,6 +73,13 @@ public class CalculatorPresenter {
             divider = BASE;
 
         }
+    }
+
+    public void requestThemes(){
+        List<Theme> themes = new ArrayList<>();
+        themes.add(new Theme(R.string.theme_one, R.drawable.ic_baseline_wb_sunny_24));
+        themes.add(new Theme(R.string.theme_two, R.drawable.ic_baseline_nights_stay_24));
+        view.showThemes(themes);
     }
 
     public void displayResult(double arg) {

@@ -14,9 +14,11 @@
     <string name="key_8">8</string>
     <string name="key_add"></string>
     <string name="key_sub"></string>
-    <string name="key_mult"></string>
+    <string name="key_mul"></string>
     <string name="key_ac"></string>
     <string name="key_pm"></string>
     <string name="key_percent"></string>
     <string name="key_div"></string>
+    <string name="theme_one">one</string>
+    <string name="theme_two">two</string>
 </resources>
